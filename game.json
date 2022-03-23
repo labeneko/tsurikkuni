@@ -48,6 +48,12 @@
 			"type": "script",
 			"path": "script/HUDManager.js",
 			"global": true
+		},
+		"dark": {
+			"type": "image",
+			"path": "image/dark.png",
+			"width": 354,
+			"height": 310
 		}
 	},
 	"moduleMainScripts": {

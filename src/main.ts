@@ -104,7 +104,7 @@ class TsurikkumaStyleGame {
 }
 
 export function main(param: GameMainParameterObject): void {
-	const scene = new g.Scene({ game: g.game });
+	const scene = new g.Scene({ game: g.game, assetIds: ["dark"] });
 
 	let timeLimit = TIMELIMIT;
 	if (param.sessionParameter.totalTimeLimit) {
@@ -125,6 +125,17 @@ export function main(param: GameMainParameterObject): void {
 	const tsurikkumaStyleGame = new TsurikkumaStyleGame(scene);
 
 	scene.loaded.add(() => {
+		var sprite = new g.Sprite({
+			scene: scene,
+			src: scene.assets["dark"],
+			width: 300,
+			height: 300,
+			scaleX: 0.25,
+			scaleY: 0.25,
+			x: -20,
+			y: -20
+		});
+		scene.append(sprite);
 		tsurikkumaStyleGame.start();
 	});
 
@@ -256,7 +267,7 @@ function createScoreLabel(parent: g.E): g.Label {
 		font: getResources().font,
 		fontSize: FONT_SIZE,
 		width: g.game.width - 10,
-		y: 5,
+		y: 40,
 		textAlign: g.TextAlign.Right,
 		widthAutoAdjust: false,
 		parent: parent
@@ -272,7 +283,7 @@ function createTimeLabel(parent: g.E): g.Label {
 		text: "",
 		font: getResources().font,
 		fontSize: FONT_SIZE,
-		width: g.game.width - 220,
+		width: g.game.width - 10,
 		y: 5,
 		textAlign: g.TextAlign.Right,
 		widthAutoAdjust: false,

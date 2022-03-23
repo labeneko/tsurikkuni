@@ -90,12 +90,12 @@ export const FISH_FONT_SIZE = 36;
 /**
  * 魚の生成間隔[ミリ秒]
  */
-export const FISH_INTERVAL = 2000;
+export const FISH_INTERVAL = 100;
 
 /**
  * 魚が泳ぐ時間範囲[ミリ秒]
  */
-export const SWIMMING_TIME_RANGE = {min: 5000, max: 10000};
+export const SWIMMING_TIME_RANGE = {min: 2000, max: 8000};
 
 /**
  * 釣り竿の色

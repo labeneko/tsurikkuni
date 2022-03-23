@@ -8,8 +8,8 @@
 以下のコマンドで実行できます。
 
 ```
-npm install
-npm run build
+yarn install
+yarn build
 akashic-sandbox .
 ```
 
