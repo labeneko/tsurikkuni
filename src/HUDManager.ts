@@ -148,4 +148,13 @@ export class HUDManager {
 		this._systemLabel.opacity = 1.0;
 		this._systemLabel.invalidate();
 	}
+
+	/**
+	 * ゲームオーバー時のシステム文言表示
+	 */
+	 showGameOver(): void {
+		this._systemLabel.text = "GAME OVER!";
+		this._systemLabel.opacity = 1.0;
+		this._systemLabel.invalidate();
+	}
 }

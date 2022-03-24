@@ -23,6 +23,7 @@ import { HUDManager } from "./HUDManager";
 import { Sea } from "./entity/Sea";
 import { GameMainParameterObject, RPGAtsumaruWindow } from "./parameterObject";
 import { getResources, setResources } from "./Resources";
+import { Fish } from "./entity/Fish";
 
 declare const window: RPGAtsumaruWindow;
 
@@ -75,6 +76,11 @@ class TsurikkumaStyleGame {
 			const pattern = this.fishingRod.getFishingPattern(this.sea.capturedFishList);
 			this.hudManager.addScore(this.hudManager.calcScore(this.sea.capturedFishList));
 			this.fishingRod.fishing(pattern);
+			if (this.sea.capturedFishList.filter((fish: Fish) => { return fish.score <= 100}).length > 0) {
+				this.hudManager.setScore(0);
+				this.isPlaying = false;
+				this._finishGame();
+			}
 			this.sea.destroyCapturedFish();
 		});
 	}
@@ -93,7 +99,11 @@ class TsurikkumaStyleGame {
 	private _finishGame(): void {
 		this.scene.pointUpCapture.removeAll();
 		this.sea.clearFishTimer();
-		this.hudManager.showTimeUp();
+		if (this.hudManager.getNowTime() <= 0) {
+			this.hudManager.showTimeUp();
+		} else {
+			this.hudManager.showGameOver();
+		}
 		if (getResources().param.isAtsumaru) {
 			const boardId = 1;
 			window.RPGAtsumaru.experimental.scoreboards.setRecord(boardId, g.game.vars.gameState.score).then(function() {
