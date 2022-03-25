@@ -104,6 +104,30 @@ class TsurikkumaStyleGame {
 		} else {
 			this.hudManager.showGameOver();
 		}
+		var group = new g.E({
+			scene: this.scene,
+			x: 300,
+			y: 300,
+			touchable: true
+		});
+		group.append(new g.FilledRect({
+			scene: this.scene,
+			cssColor: "#333333",
+			width: 150,
+			height: 60,
+		}));
+		group.append(new g.Label({
+			scene: this.scene,
+			font: getResources().font,
+			text: "Retry",
+			textColor: "#FFFFFF",
+			fontSize: 48,
+			x: 10
+		  }));
+		group.pointDown.add(function() {
+			this._startGame();
+		});
+		this.scene.append(group);
 		if (getResources().param.isAtsumaru) {
 			const boardId = 1;
 			window.RPGAtsumaru.experimental.scoreboards.setRecord(boardId, g.game.vars.gameState.score).then(function() {
